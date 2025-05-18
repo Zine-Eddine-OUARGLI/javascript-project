@@ -27,8 +27,18 @@ function getHumanChoice (){
 
 //console.log(getHumanChoice());
 
+
+
+
+/*const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);*/
+
+function playGame (){
 let humanScore = 0;
 let computerScore = 0;
+let rounds = 0;
 
 function playRound (humanChoice, computerChoice){
     if (humanChoice !== "rock"){
@@ -39,6 +49,8 @@ function playRound (humanChoice, computerChoice){
             }
         }
     }
+    rounds += 1;
+    console.log("Round: " + rounds);
     if(humanChoice === computerChoice){
         console.log("Draw! Nobody wins. Replay a round.");
     }
@@ -75,8 +87,29 @@ function playRound (humanChoice, computerChoice){
 
 }
 
+let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+while(humanScore != 3 || computerScore != 3){
+    playRound(humanSelection, computerSelection);
+    
+    if(humanScore == 3){
+        console.log("You win the game! Congratulations!");
+        console.log("Human Score: " + humanScore);
+        console.log("Computer Score: " + computerScore);
+        console.log("Number of rounds: " + rounds);
+        return
+    }
+    else if(computerScore == 3){
+        console.log("You lose the game! Better luck next time!");
+        console.log("Human Score: " + humanScore);
+        console.log("Computer Score: " + computerScore);
+        console.log("Number of rounds: " + rounds);
+        return
+    }
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+}
+}
 
-playRound(humanSelection, computerSelection);
+playGame();
